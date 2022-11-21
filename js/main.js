@@ -24,12 +24,12 @@ document.getElementById("play").addEventListener("click",
         }
 
         //timer 30s che fa scomparire numeri e fa comparire messaggio con input text per utente
-        let seconds = 30;
+        let seconds = 2;
         let timer = setInterval(function(){
             
             console.log(seconds);
             if (seconds === 0) {
-                numbersBox.innerHTML = "inserisci i 5 numeri che hai visto";
+                numbersBox.innerHTML = `inserisci i ${randomNumbers.length} numeri che hai visto`;
                 inputBox.classList.add("active");
                 clearInterval(timer);
             } else {
@@ -48,7 +48,7 @@ document.getElementById("play").addEventListener("click",
             let inputUser = parseInt(inputText.value);
             console.log(inputUser);
         
-            if (userNumbers.length < 5) {
+            if (userNumbers.length < randomNumbers.length) {
             
                 if (!userNumbers.includes(inputUser)) {
                     userNumbers.push(inputUser);
@@ -59,14 +59,14 @@ document.getElementById("play").addEventListener("click",
             
             } 
         
-            if (userNumbers.length === 5) {
+            if (userNumbers.length === randomNumbers.length) {
                 for (let i = 0; i < randomNumbers.length; i++) {
                     if (randomNumbers.includes(userNumbers[i])) {
                         punteggio++;
-                        container.innerHTML = `ti sei ricordato ${punteggio} numeri su 5`
+                        container.innerHTML = `ti sei ricordato ${punteggio} numeri su ${randomNumbers.length}`
                         console.log("punteggio ", punteggio);
                     } else {
-                        container.innerHTML = `ti sei ricordato ${punteggio} numeri su 5`
+                        container.innerHTML = `ti sei ricordato ${punteggio} numeri su ${randomNumbers.length}`
                     }
                 }
             }
