@@ -7,14 +7,10 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 const container = document.getElementById("container");
 const numbersBox = document.getElementById("numbers_box");
 const inputBox = document.querySelector(".inputs");
-const inputText = document.getElementById("input_text");
-const sendButton = document.getElementById("send");
-const playButton = document.getElementById("play");
-const resetButton = document.getElementById("reset");
 
-playButton.addEventListener("click",
+
+document.getElementById("play").addEventListener("click",
     function () {
-        
         //imposta punteggio a 0
         let punteggio = 0;
 
@@ -27,9 +23,8 @@ playButton.addEventListener("click",
             numbersBox.innerHTML += `${randomNumbers[i]}, `;
         }
 
-        
         //timer 30s che fa scomparire numeri e fa comparire messaggio con input text per utente
-        let seconds = 2;
+        let seconds = 30;
         let timer = setInterval(function(){
             
             console.log(seconds);
@@ -44,42 +39,43 @@ playButton.addEventListener("click",
         }, 1000);
 
         //inserimento numeri utente
+        const inputText = document.getElementById("input_text");
         const userNumbers = [];
-        sendButton.addEventListener("click",
+        document.getElementById("send").addEventListener("click", onSendClick);
 
-            function () {
+        function onSendClick () {
 
-                let inputUser = parseInt(inputText.value);
-                console.log(inputUser);
-
-                if (userNumbers.length < 5) {
-                
-                    if (!userNumbers.includes(inputUser)) {
-                        userNumbers.push(inputUser);
+            let inputUser = parseInt(inputText.value);
+            console.log(inputUser);
+        
+            if (userNumbers.length < 5) {
+            
+                if (!userNumbers.includes(inputUser)) {
+                    userNumbers.push(inputUser);
+                } else {
+                    alert("hai gia inserito questo numero");
+                }
+                console.log(userNumbers); 
+            
+            } 
+        
+            if (userNumbers.length === 5) {
+                for (let i = 0; i < randomNumbers.length; i++) {
+                    if (randomNumbers.includes(userNumbers[i])) {
+                        punteggio++;
+                        container.innerHTML = `ti sei ricordato ${punteggio} numeri su 5`
+                        console.log("punteggio ", punteggio);
                     } else {
-                        alert("hai gia inserito questo numero");
-                    }
-                    console.log(userNumbers); 
-                
-                } 
-
-                if (userNumbers.length === 5) {
-                    for (let i = 0; i < randomNumbers.length; i++) {
-                        if (randomNumbers.includes(userNumbers[i])) {
-                            punteggio++;
-                            container.innerHTML = `ti sei ricordato ${punteggio} numeri su 5`
-                            console.log("punteggio ", punteggio);
-                        } else {
-                            container.innerHTML = `ti sei ricordato ${punteggio} numeri su 5`
-                        }
+                        container.innerHTML = `ti sei ricordato ${punteggio} numeri su 5`
                     }
                 }
-                
-                inputText.value = "";
             }
-        );
+            
+            inputText.value = "";
+        }
     }
 );
+
 
 
 

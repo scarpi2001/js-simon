@@ -20,21 +20,6 @@ function arrRandomNumMinMax (howMany, numMin, numMax) {
     
 }
 
-//crea array di tot numeri unici prendendoli dall'input dell'utente
-function arrInput (howMany, input) {
-    const array = [];
-
-    while(array.length < howMany) {
-        
-        if (!array.includes(input)) {
-            array.push(input);
-        }
-    }
-    
-    return array;
-    
-}
-
 //crea input
 function createInput(type, value, id) {
     const newElement = document.createElement("input");
