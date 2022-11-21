@@ -14,6 +14,7 @@ const resetButton = document.getElementById("reset");
 
 playButton.addEventListener("click",
     function () {
+        
         //imposta punteggio a 0
         let punteggio = 0;
 
@@ -28,7 +29,7 @@ playButton.addEventListener("click",
 
         
         //timer 30s che fa scomparire numeri e fa comparire messaggio con input text per utente
-        let seconds = 30;
+        let seconds = 2;
         let timer = setInterval(function(){
             
             console.log(seconds);
@@ -61,17 +62,19 @@ playButton.addEventListener("click",
                     console.log(userNumbers); 
                 
                 } 
-                
+
                 if (userNumbers.length === 5) {
                     for (let i = 0; i < randomNumbers.length; i++) {
                         if (randomNumbers.includes(userNumbers[i])) {
                             punteggio++;
                             container.innerHTML = `ti sei ricordato ${punteggio} numeri su 5`
                             console.log("punteggio ", punteggio);
+                        } else {
+                            container.innerHTML = `ti sei ricordato ${punteggio} numeri su 5`
                         }
                     }
                 }
-
+                
                 inputText.value = "";
             }
         );
